@@ -7,6 +7,7 @@
     { "codice": "AV-03", "data": "2026-09-15", "categoria": "didattica",   "titolo": "Calendario delle verifiche di unita formativa",      "priorita": 1 },
     { "codice": "AV-04", "data": "2026-10-02", "categoria": "orientamento","titolo": "Open day: presentazione del percorso ACA",           "priorita": 3 },
     { "codice": "AV-05", "data": "2026-10-20", "categoria": "segreteria",  "titolo": "Rimborsi abbonamento trasporti: scadenza domande",   "priorita": 2 },
-    { "codice": "AV-06", "data": "2026-11-01", "categoria": "didattica", "titolo": "Prima versione di test rollback", "priorita": 2 }
+    { "codice": "AV-06", "data": "2026-11-01", "categoria": "didattica", "titolo": "Prima versione di test rollback", "priorita": 2 },
+    { "codice": "AV-07", "data": "2026-11-05", "categoria": "didattica", "titolo": "Seconda versione di test rollback", "priorita": 2 }
   ]
 }
