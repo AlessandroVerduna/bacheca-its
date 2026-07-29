@@ -78,6 +78,19 @@ jobs:
       - name: Costruisci il sito
         run: npm run build
 
+      - name: Smoke test sull'artefatto
+        run: |
+          test -s dist/index.html || { echo "dist/index.html mancante o vuoto"; exit 1; }
+          attesi=$(node -e "console.log(JSON.parse(require('fs').readFileSync('data/avvisi.json','utf8')).avvisi.length)")
+          trovati=$(grep -c '<td class="cod">' dist/index.html || true)
+          echo "avvisi attesi: $attesi"
+          echo "righe trovate: $trovati"
+          if [ "$attesi" != "$trovati" ]; then
+            echo "numero di righe diverso dal numero di avvisi: $trovati trovate, $attesi attese"
+            exit 1
+          fi
+          echo "smoke test superato"
+
       # TODO 3 - Tre step, in quest'ordine:
       #          a) installa ESATTAMENTE le dipendenze dichiarate nel lockfile
       #             (non "npm install": il comando che rispetta il lockfile)
