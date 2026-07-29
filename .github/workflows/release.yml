@@ -15,6 +15,13 @@ on:
   push:
     branches: [main]
 
+  workflow_dispatch:
+    inputs:
+      versione_da_ripubblicare:
+        description: 'SHA corto della build da ripubblicare (lascia vuoto per la versione corrente)'
+        required: false
+        default: ''
+
   # TODO 6 - Aggiungi la partenza a mano (workflow_dispatch) con un input
   #          chiamato  versione_da_ripubblicare : lo SHA corto di una build
   #          gia' collaudata. Non obbligatorio, default stringa vuota.
@@ -40,6 +47,10 @@ jobs:
         with:
           # tutta la storia del repository: senza, non potresti tornare indietro
           fetch-depth: 0
+
+      - name: Torna al commit da ripubblicare (rollback)
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.versione_da_ripubblicare != ''
+        run: git checkout ${{ github.event.inputs.versione_da_ripubblicare }}
 
       # TODO 7 - Se l'operatore ha indicato una versione da ripubblicare, qui il
       #          repository deve tornare a QUELLO commit prima di costruire.
