@@ -52,7 +52,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Nessun segreto nel repository
-        run: script/sniffa-segreti.sh .
+        run: bash script/sniffa-segreti.sh .
 
       # TODO 2 - Aggiungi lo step che esegue lo script script/sniffa-segreti.sh
       #          sulla cartella corrente. Lo script esce con 1 se trova un segreto:
