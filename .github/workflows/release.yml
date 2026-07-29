@@ -114,13 +114,21 @@ jobs:
   pubblica:
     name: Pubblica sul branch gh-pages
     runs-on: ubuntu-latest
-
+    needs: [build, approvazione]
+    permissions:
+      contents: write
     # TODO 9 - Questo job deve partire solo DOPO build e approvazione, e gli serve
     #          il permesso di SCRIVERE sul repository per spingere su gh-pages.
     #          Due blocchi da aggiungere qui: needs: e permissions:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Scarica l'artefatto del sito
+        uses: actions/download-artifact@v4
+        with:
+          name: sito
+          path: sito
 
       # TODO 10 - Scarica l'artefatto "sito" nella cartella  sito .
       #           NON rifare la build: e' esattamente il punto della prova.
