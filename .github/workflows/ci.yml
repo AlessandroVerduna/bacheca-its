@@ -69,6 +69,15 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Installa le dipendenze dal lockfile
+        run: npm ci
+
+      - name: Esegui i test
+        run: npm test
+
+      - name: Costruisci il sito
+        run: npm run build
+
       # TODO 3 - Tre step, in quest'ordine:
       #          a) installa ESATTAMENTE le dipendenze dichiarate nel lockfile
       #             (non "npm install": il comando che rispetta il lockfile)
